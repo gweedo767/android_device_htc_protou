@@ -3,6 +3,7 @@ USE_CAMERA_STUB := true
 # inherit from the proprietary version
 -include vendor/htc/protou/BoardConfigVendor.mk
 
+TARGET_ARCH := arm
 TARGET_NO_BOOTLOADER := true
 TARGET_BOARD_PLATFORM := unknown
 TARGET_CPU_ABI := armeabi
