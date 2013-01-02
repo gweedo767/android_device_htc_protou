@@ -9,13 +9,21 @@ DEVICE_PACKAGE_OVERLAYS += device/htc/protou/overlay
 
 LOCAL_PATH := device/htc/protou
 ifeq ($(TARGET_PREBUILT_KERNEL),)
-	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
+	LOCAL_KERNEL := device/htc/protou/kernel
 else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
+
+# HTC blobs for recovery
+PRODUCT_COPY_FILES += \
+    device/htc/protou/recovery/choice_fn:recovery/root/sbin/choice_fn \
+    device/htc/protou/recovery/detect_key:recovery/root/sbin/detect_key \
+    device/htc/protou/recovery/offmode_charging:recovery/root/sbin/offmode_charging \
+    device/htc/protou/recovery/power_test:recovery/root/sbin/power_test \
+    device/htc/protou/recovery/rmt_storage:recovery/root/sbin/rmt_storage
 
 $(call inherit-product, build/target/product/full.mk)
 
