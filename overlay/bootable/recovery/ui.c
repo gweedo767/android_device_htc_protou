@@ -198,10 +198,6 @@ static void draw_progress_locked()
         int iconHeight = gr_get_height(gBackgroundIcon[BACKGROUND_ICON_INSTALLING]);
         int width, height, dx, dy;
 
-        // Erase behind the progress bar (in case this was a progress-only update)
-        gr_color(0, 0, 0, 255);
-        gr_fill(dx, dy, width, height);
-
         if (gProgressBarType == PROGRESSBAR_TYPE_NORMAL) {
             width = gr_get_width(gProgressBarEmpty);
             height = gr_get_height(gProgressBarEmpty);
@@ -587,7 +583,7 @@ void ui_init(void)
 
 char *ui_copy_image(int icon, int *width, int *height, int *bpp) {
     pthread_mutex_lock(&gUpdateMutex);
-    draw_background_locked(icon);
+    draw_background_locked(gBackgroundIcon[icon]);
     *width = gr_fb_width();
     *height = gr_fb_height();
     *bpp = sizeof(gr_pixel) * 8;
