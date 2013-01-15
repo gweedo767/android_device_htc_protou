@@ -4,10 +4,19 @@ USE_CAMERA_STUB := true
 -include vendor/htc/protou/BoardConfigVendor.mk
 
 TARGET_NO_BOOTLOADER := true
-#TARGET_CPU_ABI := armeabi
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_SMP := true
+ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_BOOTLOADER_BOARD_NAME := protou
 TARGET_BOARD_PLATFORM := msm7k
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
+
+# Flags
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+COMMON_GLOBAL_CFLAGS += -DREFRESH_RATE=60 -DQCOM_HARDWARE
 
 BOARD_KERNEL_CMDLINE := no_console_suspend=1 console=null
 BOARD_KERNEL_BASE := 0x03200000
@@ -38,18 +47,6 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 
 
 #TWRP
-# Flags
-TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
-COMMON_GLOBAL_CFLAGS += -DREFRESH_RATE=60 -DQCOM_HARDWARE
-
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
-TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_CPU_SMP := true
-ARCH_ARM_HAVE_TLS_REGISTER := true
-
 DEVICE_RESOLUTION := 480x800
 TW_INCLUDE_DUMLOCK := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
-
