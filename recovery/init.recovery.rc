@@ -53,32 +53,6 @@ service offmode_charging /sbin/offmode_charging
 service detect_key /sbin/detect_key
     oneshot
 
-service recovery /sbin/recovery
-    disabled
-    
-service adbd /sbin/adbd recovery
-    disabled
-
-# Always start adbd on userdebug and eng builds
-# In recovery, always run adbd as root.
-on property:ro.debuggable=1
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 18D1
-    write /sys/class/android_usb/android0/idProduct D001
-    write /sys/class/android_usb/android0/functions mass_storage,adb
-    write /sys/class/android_usb/android0/enable 1
-    write /sys/class/android_usb/android0/iManufacturer $ro.product.manufacturer
-    write /sys/class/android_usb/android0/iProduct $ro.product.model
-    write /sys/class/android_usb/android0/iSerial $ro.serialno
-    start adbd
-    setprop service.adb.root 1
-
-on property:ro.debuggable=1
-    start adbd
-
-on property:ro.debuggable=0
-    stop adbd
-
 service adbd /sbin/adbd recovery
     
 on property:persist.service.adb.enable=1
@@ -87,11 +61,6 @@ on property:persist.service.adb.enable=1
 on property:persist.service.adb.enable=0
     stop adbd
 
-on property:service.adb.root=1
-    write /sys/class/android_usb/android0/lun0/enable 0
-    restart adbd
-    write /sys/class/android_usb/android0/lun0/enable 1    
-    
 on emmc
 
     mkdir /system
@@ -108,8 +77,3 @@ service rmt_storage /sbin/rmt_storage /dev/block/mmcblk0p13 /dev/block/mmcblk0p1
     
 on property:ro.emmc=1
     start rmt_storage
-
-on property:ro.bootmode=power_test
-   write /sys/module/pm2/modes/cpu0/standalone_power_collapse/suspend_enabled 1
-   write /sys/module/pm2/modes/cpu1/standalone_power_collapse/suspend_enabled 1
-   write /sys/module/pm2/modes/cpu0/power_collapse/suspend_enabled 1
