@@ -38,7 +38,7 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/f_mass_storage/lun1/fi
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_INITRC := device/htc/protou/recovery/init.recovery.rc
 #BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_10x18.h\"
-#BOARD_CUSTOM_GRAPHICS := ../../../device/htc/protou/recovery/graphics.c
+BOARD_CUSTOM_GRAPHICS := ../../../device/htc/protou/recovery/graphics.c
 # Use this flag if the board has a ext4 partition larger than 2gb
 BOARD_HAS_LARGE_FILESYSTEM := true
 
