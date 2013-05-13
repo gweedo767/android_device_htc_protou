@@ -12,7 +12,7 @@ TARGET_CPU_SMP := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_BOOTLOADER_BOARD_NAME := protou
 TARGET_BOARD_PLATFORM := msm7k
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno203
 
 BOARD_KERNEL_CMDLINE := no_console_suspend=1 console=null
 BOARD_KERNEL_BASE := 0x03200000
@@ -40,13 +40,3 @@ TARGET_RECOVERY_INITRC := device/htc/protou/recovery/init.recovery.rc
 BOARD_CUSTOM_GRAPHICS := ../../../device/htc/protou/recovery/graphics.c
 # Use this flag if the board has a ext4 partition larger than 2gb
 BOARD_HAS_LARGE_FILESYSTEM := true
-
-
-DEVICE_RESOLUTION := 480x800
-TW_INCLUDE_DUMLOCK := true
-TW_INTERNAL_STORAGE_PATH := "/emmc"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "emmc"
-TW_EXTERNAL_STORAGE_PATH := "/sdcard"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard"
-TW_DEFAULT_EXTERNAL_STORAGE := true
-
